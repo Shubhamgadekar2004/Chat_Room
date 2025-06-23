@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Chat Room</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+    <!-- Join Modal -->
+    <div class="modal fade" id="joinModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-comments me-2"></i>Join Chat Room
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <form id="joinForm">
+                        <div class="mb-3">
+                            <label for="usernameInput" class="form-label">Enter your name:</label>
+                            <input type="text" class="form-control" id="usernameInput" required 
+                                   placeholder="Your display name" maxlength="20">
+                            <div class="form-text">Choose a name to identify yourself in the chat</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-sign-in-alt me-2"></i>Join Chat
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Chat Interface -->
+    <div class="container-fluid h-100" id="chatContainer" style="display: none;">
+        <div class="row h-100">
+            <div class="col-12">
+                <!-- Header -->
+                <div class="bg-primary text-white p-3 mb-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0">
+                            <i class="fas fa-comments me-2"></i>Chat Room
+                        </h4>
+                        <div class="d-flex align-items-center">
+                            <span class="badge bg-light text-primary me-2">
+                                <i class="fas fa-users me-1"></i>
+                                <span id="userCount">0</span> online
+                            </span>
+                            <span class="text-light">Welcome, <strong id="currentUser"></strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Messages Container -->
+                <div class="chat-container">
+                    <div id="chatMessages" class="chat-messages">
+                        <!-- Messages will be inserted here -->
+                    </div>
+                    
+                    <!-- Typing Indicator -->
+                    <div id="typingIndicator" class="typing-indicator" style="display: none;">
+                        <div class="typing-text">
+                            <span id="typingUsers"></span>
+                            <div class="typing-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Message Input -->
+                <div class="message-input-container">
+                    <form id="messageForm" class="d-flex">
+                        <input type="text" id="messageInput" class="form-control me-2" 
+                               placeholder="Type your message..." maxlength="500" autocomplete="off">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connection Status -->
+    <div id="connectionStatus" class="position-fixed top-0 end-0 m-3" style="z-index: 1050;">
+        <!-- Status alerts will appear here -->
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
